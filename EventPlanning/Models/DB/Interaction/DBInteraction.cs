@@ -48,15 +48,22 @@ namespace EventPlanning.Models.DB.Interaction
             SaveChanges();
         }
 
-        public void DeleteUser(string UserId)
+        public void DeleteUser(string userId)
         {
-            eventContext.Users.Remove(FindUser(UserId));
+            eventContext.Users.Remove(FindUser(userId));
             SaveChanges();
         }
         
-        public User FindUser(string UserId)
+        public User FindUser(string userId)
         {
-            return eventContext.Users.Find(UserId);
+            return eventContext.Users.Find(userId);
+        }
+
+        public User FindUserByEmail(string email)
+        {
+           return eventContext.Users
+                .Where(s => s.Email == email)
+                .SingleOrDefault();
         }
 
         public Event FindEvent(string EventId)

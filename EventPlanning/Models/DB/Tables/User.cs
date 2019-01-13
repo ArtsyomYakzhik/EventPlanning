@@ -23,6 +23,6 @@ namespace EventPlanning.Models.DB.Tables
 
         public ICollection<Event> Events { get; set; }
 
-        public ICollection<EventRecord> eventRecords { get; set; }
+        public ICollection<EventRecord> EventRecords { get; set; }
     }
 }

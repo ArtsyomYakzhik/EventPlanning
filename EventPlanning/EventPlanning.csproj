@@ -164,6 +164,7 @@
     <Compile Include="Models\DB\Tables\EventField.cs" />
     <Compile Include="Models\DB\Tables\EventRecord.cs" />
     <Compile Include="Models\DB\Tables\User.cs" />
+    <Compile Include="Models\ElementControl\UserControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -202,7 +203,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\User\Signin.cshtml" />
+    <Content Include="Views\User\SignIn.cshtml" />
+    <Content Include="Views\User\UserHome.cshtml" />
+    <Content Include="Views\User\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
