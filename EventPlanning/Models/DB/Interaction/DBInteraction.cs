@@ -28,14 +28,15 @@ namespace EventPlanning.Models.DB.Interaction
             SaveChanges();
         }
 
-        public void SignToEvent(string UserId, string EventId)
+        public void SignToEvent(string userId, string eventId, string description)
         {
             EventRecord eventRecord = new EventRecord();
             eventRecord.RecordId = GenerateId();
-            eventRecord.Event = FindEvent(EventId);
-            eventRecord.EventId = EventId;
-            eventRecord.User = FindUser(UserId);
-            eventRecord.UserId = UserId;
+            eventRecord.RecordDescription = description;
+            eventRecord.Event = FindEvent(eventId);
+            eventRecord.EventId = eventId;
+            eventRecord.User = FindUser(userId);
+            eventRecord.UserId = userId;
 
             eventContext.EventRecords.Add(eventRecord);
             SaveChanges();
@@ -61,6 +62,11 @@ namespace EventPlanning.Models.DB.Interaction
         public Event FindEvent(string EventId)
         {
             return eventContext.Events.Find(EventId);
+        }
+
+        public List<Event> ListOfEvent()
+        {
+            return eventContext.Events.ToList();
         }
 
         private string GenerateId()

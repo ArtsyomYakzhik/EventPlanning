@@ -12,6 +12,8 @@ namespace EventPlanning.Models.DB.Tables
         [Key]
         public string RecordId { get; set; }
 
+        public string RecordDescription { get; set; }
+
         [ForeignKey("Event")]
         public string EventId { get; set; }
         public Event Event { get; set; }
