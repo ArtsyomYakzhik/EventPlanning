@@ -9,7 +9,7 @@ namespace EventPlanning.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult Index()
+        public ActionResult LogIn()
         {
             return View();
         }
