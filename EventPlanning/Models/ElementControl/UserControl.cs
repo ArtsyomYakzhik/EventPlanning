@@ -12,7 +12,7 @@ namespace EventPlanning.Models.ElementControl
     {
         static private DBInteraction dBInteraction = new DBInteraction();
 
-        static public void userAuthentification(UserController userController, User user)
+        static public void userAuthenticication(UserController userController, User user)
         {
             string userId = checkUserEmailAndPassword(user.Email, user.Password);
             if (userId != null)
@@ -20,6 +20,7 @@ namespace EventPlanning.Models.ElementControl
                 userController.Session["UserId"] = userId;
                 userController.UserHome();
             }
+            userController.ViewBag.Status = "Incorrect email or password.";
             userController.SignIn();
         }
 
@@ -33,6 +34,27 @@ namespace EventPlanning.Models.ElementControl
                 return user.UserId;
             }
             return null;
+        }
+
+        static public string userRegistration(UserController userController, User user)
+        {
+            if(checkUserFields(user))
+            {
+                dBInteraction.CreateUser(user.Name, user.Email, user.Password);
+                userController.ViewBag.Status = "Successfully creating of account, please confirm it on your email.";
+                return "SignIn";
+            }
+            userController.ViewBag.Status = "Creating failed, current user is already exists.";
+            return "SignUp";
+        }
+
+        static private bool checkUserFields(User user)
+        {
+            if (dBInteraction.FindUserByEmail(user.Email) == null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace EventPlanning.Controllers
         [HttpPost]
         public ActionResult SignIn(User user)
         {
-
+            Models.ElementControl.UserControl.userAuthenticication(this, user);
             return View();
         }
 
@@ -28,10 +28,10 @@ namespace EventPlanning.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Registration(User user)
         {
-            return SignUp();
+            return View(Models.ElementControl.UserControl.userRegistration(this, user));
         }
 
         public ActionResult UserHome()

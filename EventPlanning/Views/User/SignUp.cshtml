@@ -5,13 +5,16 @@
 
 <div class="col-md-4">
 	<h2>Sign up</h2>
-	<form method="post" action="SignUp">
-		<input type="text" name="Email" />
+	<form method="post" action="Registration">
+		<input type="text" required name="Email" />
 		<br />
-		<input type="password" name="Password" />
+		<input type="password" required name="Password" />
+		<br />
+		<input type="text" required name="Name" />
 		<br />
 		<input type="submit" title="Sign In" />
 		<br />
 	</form>
+	<h1>@ViewBag.Status</h1>
 </div>
 
