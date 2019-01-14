@@ -18,6 +18,7 @@ namespace EventPlanning.Controllers
         [HttpPost]
         public ActionResult Create(Event eventItem)
         {
+            
             return View();
         }
     }

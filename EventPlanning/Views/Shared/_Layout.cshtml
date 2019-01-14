@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – приложение ASP.NET</title>
+    <title>@ViewBag.Title – EventPlanning</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 	<script>
@@ -13,7 +13,10 @@
 			var fieldDescription = document.createElement('input');
 			var deleteButton = document.createElement('button');
 			fieldName.type = 'text';
+			fieldName.className = 'form - control';
 			fieldDescription.type = 'text';
+			fieldDescription.className = 'form-control';
+			deleteButton.className = 'btn';
 			deleteButton.type = 'button';
 			deleteButton.setAttribute('onclick', "deleteEventField(this)");
 			deleteButton.textContent = 'Delete field';
@@ -47,7 +50,7 @@
             </div>
         </div>
     </div>
-    <div class="">
+    <div class="glyphicon-align-center">
         @RenderBody()
     </div>
 

@@ -2,10 +2,23 @@
 @{
     ViewBag.Title = "Create";
 }
-
 <h2>Add event</h2>
-<form id="form" method="post" action="Event/Create">
-	<input type="text" name=""
-	<button id="add" type="button" onclick="addNewEventField()">Add new field</button>
-	<input type="submit" value="Create Event" />
+<form method="post" action="Create">
+	<div class="form-group">
+		<label class="control-label">Name of event</label>
+		<input class="form-control" type="text" name="EventName" />
+		<label class="control-label">Event date</label>
+		<input class="form-control" type="datetime-local" min="" name="EventDate" id="EventDate" />
+		<label class="control-label">Count of people on event</label>
+		<input class="form-control" type="number" min="1" max="100" name="MaxPeopleCount" />
+		<div id="form" class="form-group-lg">
+			<label class="control-label">Additinal fields</label>
+			<button class="btn-xs" id="add" type="button" onclick="addNewEventField()">Add new field</button>
+		</div>
+		<input class="form-control" type="submit" value="Create Event" />
+	</div>
 </form>
+<script>
+	var dateNow = new Date(Date.now());
+	document.getElementById('EventDate').setAttribute('min',dateNow.toISOString().slice(0, 19));
+</script>
