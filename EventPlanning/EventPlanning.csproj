@@ -165,6 +165,7 @@
     <Compile Include="Models\DB\Tables\EventField.cs" />
     <Compile Include="Models\DB\Tables\EventRecord.cs" />
     <Compile Include="Models\DB\Tables\User.cs" />
+    <Compile Include="Models\ElementControl\EventControl.cs" />
     <Compile Include="Models\ElementControl\UserControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -39,5 +39,11 @@ namespace EventPlanning.Controllers
             ViewBag.UserId = Session["UserId"];
             return View();
         }
+
+        public ActionResult ConfirmEmail(string token, string email)
+        {
+            Models.ElementControl.UserControl.confirmEmail(token, email);
+            return View("SignIn");
+        }
     }
 }
