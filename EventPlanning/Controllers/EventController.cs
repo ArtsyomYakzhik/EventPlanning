@@ -1,4 +1,5 @@
 ﻿using EventPlanning.Models.DB.Tables;
+using EventPlanning.Models.ElementControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,11 @@ namespace EventPlanning.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Event eventItem)
+        public ActionResult Create(Event eventItem, string[] fieldName, string[] fieldText)
         {
-            
-            return View();
+            eventItem.CreatorId = Session["UserId"].ToString();
+            EventControl.CreateNewEvent(eventItem, fieldName, fieldText);
+            return RedirectToActionPermanent("Create");
         }
     }
 }

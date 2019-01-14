@@ -28,6 +28,24 @@ namespace EventPlanning.Models.DB.Interaction
             SaveChanges();
         }
 
+        public void CreateEvent(Event newEvent)
+        {
+            eventContext.Events.Add(newEvent);
+            SaveChanges();
+        }
+
+        public void AddEventField(string eventId, string fieldName, string fieldText)
+        {
+            EventField eventField = new EventField() {
+                FieldId = GenerateId(),
+                FieldName = fieldName,
+                FieldText = fieldText,
+                EventId = eventId
+            };
+            eventContext.EventFields.Add(eventField);
+            SaveChanges();
+        }
+
         public void SignToEvent(string userId, string eventId, string description)
         {
             EventRecord eventRecord = new EventRecord();
