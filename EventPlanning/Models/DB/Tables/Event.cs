@@ -17,6 +17,8 @@ namespace EventPlanning.Models.DB.Tables
         [DataType(DataType.Date)]
         public DateTime EventDate { get; set; }
 
+        public int MaxPeopleCount { get; set; }
+
         [ForeignKey("User")]
         public string CreatorId { get; set; }
         public User User { get; set; }

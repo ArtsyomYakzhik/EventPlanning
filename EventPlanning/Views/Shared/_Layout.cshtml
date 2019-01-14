@@ -4,11 +4,32 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style ty
     <title>@ViewBag.Title – приложение ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+	<script>
+		function addNewEventField(element) {
+			var fieldName = document.createElement('input');
+			var fieldDescription = document.createElement('input');
+			var deleteButton = document.createElement('button');
+			fieldName.type = 'text';
+			fieldDescription.type = 'text';
+			deleteButton.type = 'button';
+			deleteButton.setAttribute('onclick', "deleteEventField(this)");
+			deleteButton.textContent = 'Delete field';
+			form.insertBefore(fieldName, add);
+			form.insertBefore(fieldDescription, add);
+			form.insertBefore(deleteButton, add);
+		}
+		function deleteEventField(element) {
+			var numberOfDeleteButton = Array.prototype.indexOf.call(form.children, element);
+			for (var i = numberOfDeleteButton; i >= numberOfDeleteButton - 2; i--)
+			{
+				var removedChild = form.children[i];
+				form.removeChild(removedChild);
+			}
+		}
+	</script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">

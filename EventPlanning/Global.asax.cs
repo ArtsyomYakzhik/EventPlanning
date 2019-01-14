@@ -14,10 +14,10 @@ namespace EventPlanning
     {
         protected void Application_Start()
         {
-            //EventContext ePDBContext = new EventContext();
-            //ePDBContext.Database.Delete();
-            //ePDBContext.Database.Create();
-            //ePDBContext.SaveChanges();
+            EventContext ePDBContext = new EventContext();
+            ePDBContext.Database.Delete();
+            ePDBContext.Database.Create();
+            ePDBContext.SaveChanges();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
