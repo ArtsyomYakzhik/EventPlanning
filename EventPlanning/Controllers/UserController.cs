@@ -1,4 +1,5 @@
 ﻿using EventPlanning.Models.DB.Tables;
+using EventPlanning.Models.ElementControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,8 @@ namespace EventPlanning.Controllers
 
         public ActionResult UserHome()
         {
-            ViewBag.UserId = Session["UserId"];
+            ViewBag.UserId = Session["UserId"].ToString();
+            ViewBag.UserEvents = EventControl.GetUserEvents(Session["UserId"].ToString());
             return View();
         }
 

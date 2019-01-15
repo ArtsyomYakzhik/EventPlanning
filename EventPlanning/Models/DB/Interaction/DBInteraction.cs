@@ -1,6 +1,7 @@
 ﻿using EventPlanning.Models.DB.Tables;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -105,7 +106,12 @@ namespace EventPlanning.Models.DB.Interaction
 
         public List<Event> ListOfEvent()
         {
-            return eventContext.Events.ToList();
+            DbSet<Event> events = eventContext.Events;
+            if (events != null)
+            {
+                return eventContext.Events.ToList();
+            }
+            return null;
         }
 
         private string GenerateId()
