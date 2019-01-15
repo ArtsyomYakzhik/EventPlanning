@@ -24,4 +24,13 @@
 </div>
 <div id="right">
 	<h2>User events </h2>
+	@foreach (var element in ViewBag.UserRecords)
+	{
+		<div class="label-default">Event Name:</div>
+		@element.Event.EventName
+		<div class="label-default">Event Date:</div>
+		@element.Event.EventDate
+		<div class="label-default">User description:</div>
+		@element.Description
+	}
 </div>
