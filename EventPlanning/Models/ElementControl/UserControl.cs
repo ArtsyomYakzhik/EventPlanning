@@ -63,23 +63,16 @@ namespace EventPlanning.Models.ElementControl
         static private void sendEmailToUser(User user,UserController userController)
         {
             user = dBInteraction.FindUserByEmail(user.Email);
-            // наш email с заголовком письма
             MailAddress from = new MailAddress("testconfirmation25@gmail.com", "Web Registration");
-            // кому отправляем
             MailAddress to = new MailAddress(user.Email);
-            // создаем объект сообщения
             MailMessage m = new MailMessage(from, to);
-            // тема письма
             m.Subject = "Email confirmation";
-            // текст письма - включаем в него ссылку
             m.Body = string.Format("Для завершения регистрации перейдите по ссылке:" +
                             "<a href=\"{0}\" title=\"Подтвердить регистрацию\">{0}</a>",
                 userController.Url.Action("ConfirmEmail", "User", new { Token = user.UserId, user.Email }, userController.Request.Url.Scheme));
             m.IsBodyHtml = true;
-            // адрес smtp-сервера, с которого мы и будем отправлять письмо
             SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
             smtp.EnableSsl = true;
-            // логин и пароль
             smtp.Credentials = new System.Net.NetworkCredential("testconfirmation25@gmail.com", "A123456ABC");
             smtp.Send(m);
         }

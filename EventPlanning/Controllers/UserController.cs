@@ -42,6 +42,7 @@ namespace EventPlanning.Controllers
         {
             ViewBag.UserId = Session["UserId"].ToString();
             ViewBag.UserEvents = EventControl.GetUserEvents(Session["UserId"].ToString());
+            ViewBag.UserRecords = EventControl.GetUserRecords(ViewBag.UserId);
             return View();
         }
 

@@ -44,5 +44,10 @@ namespace EventPlanning.Models.ElementControl
         {
             return dBInteraction.ListOfEventWithFreeSpace();
         }
+
+        static public List<EventRecord> GetUserRecords(string userId)
+        {
+            return dBInteraction.GetListOfUserRecords(userId);
+        }
     }
 }

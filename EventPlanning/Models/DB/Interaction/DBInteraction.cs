@@ -121,6 +121,13 @@ namespace EventPlanning.Models.DB.Interaction
                 new List<Event>();
         }
 
+        public List<EventRecord> GetListOfUserRecords(string userId)
+        {
+            if (eventContext.EventRecords.Where(u => u.UserId == userId) != null)
+                return eventContext.EventRecords.Where(u => u.UserId == userId).ToList();
+            return new List<EventRecord>();
+        }
+
         private string GenerateId()
         {
             return Guid.NewGuid().ToString("N");
