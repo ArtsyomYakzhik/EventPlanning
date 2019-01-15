@@ -2,36 +2,38 @@
 @{
     ViewBag.Title = "UserHome";
 }
-<a class="btn-link" href="/Event/Create">Create new event</a>
-<a class="btn-link" href="/Event/SignToEvent">Create new event</a>
-<div id="left">
-	<h2>User own events</h2>
-	@foreach (var element in ViewBag.UserEvents)
-	{
-		<div class="label-default">Event Name:</div>
-		@element.EventName
-		<div class="label-default">Event Date:</div>
-		@element.EventDate
-		if (element.EventFields != null)
+<a class="navbar-link" href="/Event/Create">Create new event</a>
+<a class="navbar-link" style="position:absolute;left:15%" href="/Event/SignToEvent">Sign to event</a>
+<div>
+	<div id="left">
+		<h2>User own events</h2>
+		@foreach (var element in ViewBag.UserEvents)
 		{
-			foreach (var fiedElement in element.EventFields)
+			<div class="label-default">Event Name:</div>
+			@element.EventName
+			<div class="label-default">Event Date:</div>
+			@element.EventDate
+			if (element.EventFields != null)
 			{
-			<div class="label-default">@fiedElement.FieldName</div>
-			@fiedElement.FieldText
+				foreach (var fiedElement in element.EventFields)
+				{
+					<div class="label-default">@fiedElement.FieldName</div>
+					@fiedElement.FieldText
+				}
 			}
+			<br />
 		}
-		<br/>
-	}
-</div>
-<div id="right">
-	<h2>User events </h2>
-	@foreach (var element in ViewBag.UserRecords)
-	{
-		<div class="label-default">Event Name:</div>
-		@element.Event.EventName
-		<div class="label-default">Event Date:</div>
-		@element.Event.EventDate
-		<div class="label-default">User description:</div>
-		@element.RecordDescription
-	}
+	</div>
+	<div id="right">
+		<h2>User events </h2>
+		@foreach (var element in ViewBag.UserRecords)
+		{
+			<div class="label-default">Event Name:</div>
+			@element.Event.EventName
+			<div class="label-default">Event Date:</div>
+			@element.Event.EventDate
+			<div class="label-default">User description:</div>
+			@element.RecordDescription
+		}
+	</div>
 </div>
