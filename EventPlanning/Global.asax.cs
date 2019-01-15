@@ -17,6 +17,13 @@ namespace EventPlanning
             EventContext ePDBContext = new EventContext();
             ePDBContext.Database.Delete();
             ePDBContext.Database.Create();
+            ePDBContext.Users.Add(new Models.DB.Tables.User(){
+                UserId = "1",
+                Email = "test@example.te",
+                ConfirmedEmail = true,
+                Password = " ",
+                Name = "Pyotr"
+            });
             ePDBContext.SaveChanges();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

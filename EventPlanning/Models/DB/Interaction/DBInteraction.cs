@@ -28,10 +28,12 @@ namespace EventPlanning.Models.DB.Interaction
             SaveChanges();
         }
 
-        public void CreateEvent(Event newEvent)
+        public string CreateEvent(Event newEvent)
         {
+            newEvent.EventId = GenerateId();
             eventContext.Events.Add(newEvent);
             SaveChanges();
+            return newEvent.EventId;
         }
 
         public void AddEventField(string eventId, string fieldName, string fieldText)
@@ -39,10 +41,17 @@ namespace EventPlanning.Models.DB.Interaction
             EventField eventField = new EventField() {
                 FieldId = GenerateId(),
                 FieldName = fieldName,
-                FieldText = fieldText,
-                EventId = eventId
+                FieldText = fieldText
             };
             eventContext.EventFields.Add(eventField);
+            SaveChanges();
+            AttachEventField(eventId, FindEventField(eventField.FieldId));
+        }
+        
+        private void AttachEventField(string eventId, EventField eventField)
+        {
+            Event findedEvent = FindEvent(eventId);
+            eventField.Event = findedEvent;
             SaveChanges();
         }
 
@@ -84,9 +93,14 @@ namespace EventPlanning.Models.DB.Interaction
                 .SingleOrDefault();
         }
 
-        public Event FindEvent(string EventId)
+        public Event FindEvent(string eventId)
         {
-            return eventContext.Events.Find(EventId);
+            return eventContext.Events.Find(eventId);
+        }
+
+        public EventField FindEventField(string eventFieldId)
+        {
+            return eventContext.EventFields.Find(eventFieldId);
         }
 
         public List<Event> ListOfEvent()

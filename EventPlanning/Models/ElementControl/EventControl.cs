@@ -13,8 +13,7 @@ namespace EventPlanning.Models.ElementControl
 
         static public void CreateNewEvent(Event newEvent, string[] fieldName, string[] fieldText)
         {
-            dBInteraction.CreateEvent(newEvent);
-            AddEventFields(newEvent.CreatorId, fieldName, fieldText);
+            AddEventFields(dBInteraction.CreateEvent(newEvent), fieldName, fieldText);
         }
 
         static private void AddEventFields(string eventId, string[] fieldName, string[] fieldText)

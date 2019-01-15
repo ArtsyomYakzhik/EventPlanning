@@ -23,8 +23,8 @@ namespace EventPlanning.Models.DB.Tables
         public string CreatorId { get; set; }
         public User User { get; set; }
 
-        public ICollection<EventField> eventFields { get; set; }
+        public ICollection<EventField> EventFields { get; set; }
 
-        public ICollection<EventRecord> eventRecords { get; set; }
+        public ICollection<EventRecord> EventRecords { get; set; }
     }
 }

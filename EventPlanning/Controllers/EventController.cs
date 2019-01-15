@@ -21,7 +21,7 @@ namespace EventPlanning.Controllers
         {
             eventItem.CreatorId = Session["UserId"].ToString();
             EventControl.CreateNewEvent(eventItem, fieldName, fieldText);
-            return RedirectToActionPermanent("Create");
+            return RedirectToActionPermanent("UserHome", "User");
         }
     }
 }
