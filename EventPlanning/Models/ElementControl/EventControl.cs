@@ -34,5 +34,10 @@ namespace EventPlanning.Models.ElementControl
             ICollection<Event> events = dBInteraction.FindUser(userId).Events;
             return events != null? events.ToList(): new List<Event>();
         }
+
+        static public List<Event> GetEventsWithFreeSpace()
+        {
+            return dBInteraction.ListOfEventWithFreeSpace();
+        }
     }
 }

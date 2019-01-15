@@ -114,6 +114,13 @@ namespace EventPlanning.Models.DB.Interaction
             return null;
         }
 
+        public List<Event> ListOfEventWithFreeSpace()
+        {
+            return eventContext.Events.Where(u => u.EventRecords.Count < u.MaxPeopleCount) != null ?
+                eventContext.Events.Where(u => u.EventRecords.Count < u.MaxPeopleCount).ToList() :
+                new List<Event>();
+        }
+
         private string GenerateId()
         {
             return Guid.NewGuid().ToString("N");

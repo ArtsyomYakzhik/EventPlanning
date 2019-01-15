@@ -23,5 +23,19 @@ namespace EventPlanning.Controllers
             EventControl.CreateNewEvent(eventItem, fieldName, fieldText);
             return RedirectToActionPermanent("UserHome", "User");
         }
+
+        [HttpGet]
+        public ActionResult SignToEvent()
+        {
+            ViewBag.EventList = EventControl.GetEventsWithFreeSpace();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SignToEvent(string eventId)
+        {
+
+            return RedirectToActionPermanent("UserHome", User);
+        }
     }
 }

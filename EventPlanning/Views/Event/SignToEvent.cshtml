@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "SignToEvent";
+}
+
+<h2>SignToEvent</h2>
+@foreach (var element in ViewBag.EventList)
+{
+	<form method="post" action="SignToEvent">
+		<div class="form-group">
+			<div class="label-default">Event Name:</div>
+			@element.EventName
+			<div class="label-default">Event Date:</div>
+			@element.EventDate
+			@if (element.EventFields != null)
+			{
+				foreach (var fiedElement in element.EventFields)
+				{
+					<div class="label-default">@fiedElement.FieldName</div>
+					@fiedElement.FieldText
+				}
+			}
+			<input type="hidden" hidden="hidden" value="@element.EventId" />
+			<input type="submit" value="Sign to this event"/>
+		</div>
+	</form>
+}
+
