@@ -14,16 +14,16 @@ namespace EventPlanning.Models.ElementControl
     {
         static private DBInteraction dBInteraction = new DBInteraction();
 
-        static public void userAuthenticication(UserController userController, User user)
+        static public bool userAuthenticication(UserController userController, User user)
         {
             string userId = checkUserEmailAndPassword(user.Email, user.Password);
             if (userId != null)
             {
                 userController.Session["UserId"] = userId;
-                userController.UserHome();
+                return true;
             }
             userController.ViewBag.Status = "Incorrect email or password.";
-            userController.SignIn();
+            return false;
         }
 
         static private string checkUserEmailAndPassword(string email, string password)
@@ -62,8 +62,9 @@ namespace EventPlanning.Models.ElementControl
 
         static private void sendEmailToUser(User user,UserController userController)
         {
+            user = dBInteraction.FindUserByEmail(user.Email);
             // наш email с заголовком письма
-            MailAddress from = new MailAddress("NullName@yandex.ru", "Web Registration");
+            MailAddress from = new MailAddress("testconfirmation25@gmail.com", "Web Registration");
             // кому отправляем
             MailAddress to = new MailAddress(user.Email);
             // создаем объект сообщения
@@ -73,12 +74,13 @@ namespace EventPlanning.Models.ElementControl
             // текст письма - включаем в него ссылку
             m.Body = string.Format("Для завершения регистрации перейдите по ссылке:" +
                             "<a href=\"{0}\" title=\"Подтвердить регистрацию\">{0}</a>",
-                userController.Url.Action("ConfirmEmail", "Account", new { Token = user.UserId, user.Email }, userController.Request.Url.Scheme));
+                userController.Url.Action("ConfirmEmail", "User", new { Token = user.UserId, user.Email }, userController.Request.Url.Scheme));
             m.IsBodyHtml = true;
             // адрес smtp-сервера, с которого мы и будем отправлять письмо
-            SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.yandex.ru", 25);
+            SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
+            smtp.EnableSsl = true;
             // логин и пароль
-            smtp.Credentials = new System.Net.NetworkCredential("NullName@yandex.ru", "A123456ABC");
+            smtp.Credentials = new System.Net.NetworkCredential("testconfirmation25@gmail.com", "A123456ABC");
             smtp.Send(m);
         }
 
@@ -90,6 +92,7 @@ namespace EventPlanning.Models.ElementControl
                 if (user != null)
                 {
                     dBInteraction.SetEmailConfirm(user.UserId);
+                    dBInteraction.FindUserByEmail(email);
                 }
             }
         }

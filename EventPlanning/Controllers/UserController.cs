@@ -18,8 +18,11 @@ namespace EventPlanning.Controllers
         [HttpPost]
         public ActionResult SignIn(User user)
         {
-            Models.ElementControl.UserControl.userAuthenticication(this, user);
-            return View();
+            if(Models.ElementControl.UserControl.userAuthenticication(this, user))
+            {
+                return RedirectToActionPermanent("UserHome");
+            }
+            return RedirectToActionPermanent("SignIn");
         }
 
         
