@@ -32,10 +32,10 @@ namespace EventPlanning.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignToEvent(string eventId)
+        public ActionResult SignToEvent(string eventId, string description)
         {
-
-            return RedirectToActionPermanent("UserHome", User);
+            EventControl.CreateRecord(Session["UserId"].ToString(), eventId, description);
+            return RedirectToActionPermanent("UserHome", "User");
         }
     }
 }

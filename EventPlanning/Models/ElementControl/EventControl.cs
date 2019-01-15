@@ -12,6 +12,11 @@ namespace EventPlanning.Models.ElementControl
     {
         static private DBInteraction dBInteraction = new DBInteraction();
 
+        static public void CreateRecord(string userId, string eventId, string descritpion)
+        {
+            dBInteraction.SignToEvent(userId, eventId, descritpion);
+        }
+
         static public void CreateNewEvent(Event newEvent, string[] fieldName, string[] fieldText)
         {
             AddEventFields(dBInteraction.CreateEvent(newEvent), fieldName, fieldText);
